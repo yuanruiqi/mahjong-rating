@@ -19,7 +19,6 @@ void read_users(){
         w.name=x.second;
         players[x.first]=w;
     }
-    // fclose(stdin);
 }
 void read_events(){
     std::ifstream cin;
@@ -48,7 +47,6 @@ void read_events(){
         }
         db.push_back(crc);
     }
-    // fclose(stdout);
 }
 void input(){
     read_users();
