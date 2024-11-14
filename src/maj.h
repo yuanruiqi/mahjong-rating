@@ -13,8 +13,10 @@ using f128 = long double;
 struct person
 {
     std::string name;
-    // f128 rank[5];
-    // i64 count;
+    i64 rank_cnt[5];
+    i64 event_cnt, game_cnt;
+    i64 win_cnt, win_sum, crush_cnt;
+    f128 rating;
 };
 
 enum state
@@ -39,6 +41,8 @@ struct event
     person* per[4];
     std::vector<game> games;
 };
+
+std::vector<event> db;
 
 void output();
 
