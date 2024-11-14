@@ -18,7 +18,7 @@ void read_users(){
         w.name=x.second;
         players[x.first]=w;
     }
-    fclose(stdin);
+    // fclose(stdin);
 }
 void read_events(){
     freopen(events_file.c_str(),"r",stdin);
@@ -46,7 +46,7 @@ void read_events(){
         }
         db.push_back(crc);
     }
-    fclose(stdout);
+    // fclose(stdout);
 }
 void input(){
     read_users();
