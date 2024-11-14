@@ -22,12 +22,12 @@ std::vector<person> players;
 
 enum state
 {
-    TSUMO,
-    RON,
-    CRUSH,
-    SKIPPED,
-    TENPAI,
-    NOTEN
+    TSUMO,      // 0
+    RON,        // 1
+    CRUSH,      // 2
+    SKIPPED,    // 3
+    TENPAI,     // 4
+    NOTEN       // 5
 };
 
 struct game
