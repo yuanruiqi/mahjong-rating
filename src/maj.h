@@ -17,6 +17,7 @@ struct person
     i64 event_cnt, game_cnt, event_sum;
     i64 win_cnt, win_sum, crush_cnt;
     f128 rating;
+    person() {}
 };
 std::vector<person> players;
 
