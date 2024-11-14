@@ -14,10 +14,11 @@ struct person
 {
     std::string name;
     i64 rank_cnt[5];
-    i64 event_cnt, game_cnt;
+    i64 event_cnt, game_cnt, event_sum;
     i64 win_cnt, win_sum, crush_cnt;
     f128 rating;
 };
+std::vector<person> players;
 
 enum state
 {
@@ -38,7 +39,7 @@ struct game
 
 struct event
 {
-    person* per[4];
+    i32 per[4];
     std::vector<game> games;
 };
 
