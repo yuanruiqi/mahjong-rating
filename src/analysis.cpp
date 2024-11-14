@@ -46,7 +46,7 @@ void analysis()
         assert(score[0] + score[1] + score[2] + score[3] == 100000);
         pii p[4];
         i32 rk[4];
-        for (i32 i = 0; i < 4; ++i) p[i] = pii(score[i], i);
+        for (i32 i = 0; i < 4; ++i) p[i] = pii(-score[i], i);
         std::sort(p, p + 4);
         for (i32 i = 0; i < 4; ++i) rk[p[i].second] = i;
         f128 avg = 0;
@@ -62,4 +62,6 @@ void analysis()
             players[id].rating += delta;
         }
     }
+    // TEST
+    for (auto i : players) std::cerr << i.name << ' ' << i.rating << '\n';
 }

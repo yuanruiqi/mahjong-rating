@@ -14,11 +14,7 @@ void read_users(){
 
     }
     players.resize(maxid+1);
-    for(auto x:zz){
-        person w;
-        w.name=x.second;
-        players[x.first]=w;
-    }
+    for(auto x:zz) players[x.first].name = x.second;
 }
 void read_events(){
     std::ifstream cin;
@@ -33,7 +29,7 @@ void read_events(){
         crc.per[2]=idc;
         crc.per[3]=idd;
         for(i32 i=1;i<=n;i++){
-            game p;
+            game p {};
             cin>>p.host;
             for(i32 j=0;j<=3;j++){
                 i32 id;

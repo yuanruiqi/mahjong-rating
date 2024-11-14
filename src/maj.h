@@ -21,7 +21,7 @@ struct person
     i64 event_cnt, game_cnt, event_sum;
     i64 win_cnt, win_sum, crush_cnt;
     f128 rating;
-    person() {rating = 2000;}
+    person() {rating = 2000; }
 };
 extern std::vector<person> players;
 
@@ -40,6 +40,7 @@ struct game
     i32 host;
     state stat[4];
     i32 delta[4];
+    game() {}
 };
 
 struct event
