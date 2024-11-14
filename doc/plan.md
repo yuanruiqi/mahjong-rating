@@ -18,3 +18,9 @@ $$
 \Delta R=\frac{x-25000}{100\pi}+(poly(\overline{R})/\frac{poly(\overline{R})}{e}/-\frac{poly(\overline{R})}{e}/-poly(R))
 $$
 
+
+### events.txt 格式
+若干行，每组表示一局。
+每个第一行表示局数 $n$。
+接下来 $4$ 个数表示参加编号 $id$。
+接下来 $n$ 行，每行 $9$ 个整数，按照 struct game 的格式输入。
