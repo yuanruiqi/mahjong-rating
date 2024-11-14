@@ -2,6 +2,10 @@
 
 #pragma once
 
+#ifndef MAJ_H
+
+#define MAJ_H
+
 #include <bits/stdc++.h>
 
 using i32 = int;
@@ -19,7 +23,7 @@ struct person
     f128 rating;
     person() {rating = 2000;}
 };
-std::vector<person> players;
+extern std::vector<person> players;
 
 enum state
 {
@@ -43,11 +47,12 @@ struct event
     i32 per[4];
     std::vector<game> games;
 };
-
-std::vector<event> db;
+extern std::vector<event> db;
 
 void output();
 
 void analysis();
 
 void input();
+
+#endif
