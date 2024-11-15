@@ -22,7 +22,7 @@ void output(){
         cout<<"<p>放铳概率："<<std::fixed<<' '<<std::setprecision(3)<<player.crush_cnt*1.0/std::max(1ll,player.game_cnt)<<"</p>\n";
         cout<<"<p>平均打点："<<std::fixed<<' '<<std::setprecision(3)<<player.win_sum*1.0/std::max(1ll,player.win_cnt)<<"</p>\n";
         cout<<"<p>参加局数："<<player.event_cnt<<"</p>\n";
-        opt+="<p><a href=\"./"+player.name+".html\">"+player.name+"</a></p>";
+        opt+="<p><a href=\"./"+player.name+".html\">"+player.name+"</a></p>\n";
         std::stringstream row;
         row<<"|"+player.name+"|"<<std::fixed<<' '<<std::setprecision(3)<<player.rating<<"|\n";
         table+=row.str();
