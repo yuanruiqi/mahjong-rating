@@ -24,7 +24,7 @@ void output(){
         }
         opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<t*1.0/std::max(1ll,player.event_cnt);
         opt<<"|"<<std::fixed<<' '<<std::setprecision(1)<<player.crush_cnt*100.0/std::max(1ll,player.game_cnt)<<'%';
-        opt<<"|"<<std::fixed<<' '<<std::setprecision(1)<<player.win_sum*100.0/std::max(1ll,player.win_cnt)<<'%';
+        opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.win_sum*1.0/std::max(1ll,player.win_cnt);
         opt<<"|"<<player.event_cnt;
         opt<<"|"<<player.max_rating;
         opt<<"|"<<player.dan;
