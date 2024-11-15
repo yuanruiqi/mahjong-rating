@@ -23,12 +23,11 @@ void read_events(){
     while(cin>>n){
         event crc;
         cin>>crc.type;
-        i32 ida,idb,idc,idd;
-        cin>>ida>>idb>>idc>>idd;
-        crc.per[0]=ida;
-        crc.per[1]=idb;
-        crc.per[2]=idc;
-        crc.per[3]=idd;
+        for(i32 i=0;i<crc.type;i++){
+            i32 x;
+            cin>>x;
+            crc.per[i]=(state)x;
+        }
         for(i32 i=1;i<=n;i++){
             game p {};
             cin>>p.host;
