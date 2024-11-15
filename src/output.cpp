@@ -1,7 +1,8 @@
 #include "maj.h"
 const std::string indexlink="./html/index.html";
 void output(){
-    std::string opt="<meta charset=\"utf-8\">\n";
+    std::string opt="<meta charset=\"utf-8\">\n<script src=\"marked.min.js\"></script>";
+    std::string table="<div id=\"$m\" class=\"markdown-body\"></div><textarea id=\"$t\" style=\"display:none\">|姓名|rating|\n| ----------- | ----------- |\n";
     for(auto player:players){
         std::string outputpath="./html/";
         outputpath+=player.name+".html";
@@ -22,7 +23,11 @@ void output(){
         cout<<"<p>平均打点："<<std::fixed<<' '<<std::setprecision(3)<<player.win_sum*1.0/std::max(1ll,player.win_cnt)<<"</p>\n";
         cout<<"<p>参加局数："<<player.event_cnt<<"</p>\n";
         opt+="<p><a href=\"./"+player.name+".html\">"+player.name+"</a></p>";
+        std::stringstream row;
+        row<<"|"+player.name+"|"<<std::fixed<<' '<<std::setprecision(3)<<player.rating<<"|\n";
+        table+=row.str();
     }
+    table+=" </textarea>\n <script>$m.innerHTML = marked.parse($t.value);</script>";
         std::ofstream cout(indexlink.c_str(),std::ios_base::out);
-        cout<<opt;
+        cout<<opt<<table;
 }
