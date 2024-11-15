@@ -2,7 +2,7 @@
 const std::string indexlink="./html/index.html";
 const std::string outmd="./html/out.md";
 bool cmp(person a,person b){
-    return a.rating>b.rating;
+    return a.show_rating>b.show_rating;
 }
 void output(){
     // std::string opt="<meta charset=\"utf-8\">\n<script src=\"marked.min.js\"></script>";
@@ -24,7 +24,7 @@ void output(){
         std::stringstream opt;
         opt<<"|"<<(cnt++);
         opt<<"|"<<player.name;;
-        opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.rating;
+        opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.show_rating;
         i32 t=0;
         for(i32 i=0;i<=4;i++){
             t+=std::min(i+1,4)*player.rank_cnt[i];

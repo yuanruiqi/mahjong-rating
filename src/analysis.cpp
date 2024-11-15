@@ -17,6 +17,8 @@ f128 calc(i32 rk, f128 avg, f128 rate)
     return poly(avg) * (rk == 1 ? 1 : -1) / e;
 }
 
+constexpr f128 rate_delta[] = {-2000, -1000, -500, -250, 0};
+
 void analysis()
 {
     for (event ev : db)
@@ -59,7 +61,8 @@ void analysis()
             ++players[id].rank_cnt[rk[i]];
             players[id].rank_cnt[4] += score[i] < 0;
             f128 delta = (score[i] - 25000) / (100 * pi) + calc(rk[i], avg, players[id].rating);
-            f128 rate = (players[id].rating += delta);
+            players[id].rating += delta;
+            f128 rate = players[id].show_rating = players[id].rating + rate_delta[std::min(4ll, players[id].event_cnt)];
             players[id].max_rating = std::max(players[id].max_rating, rate);
             i64 k = ((i64) rate) / 200;
             if (k >= 10) players[id].dan = std::to_string(k - 9) + " Dan";
