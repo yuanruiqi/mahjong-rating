@@ -61,7 +61,7 @@ void analysis()
             f128 delta = (score[i] - 25000) / (100 * pi) + calc(rk[i], avg, players[id].rating);
             f128 rate = (players[id].rating += delta);
             players[id].max_rating = std::max(players[id].max_rating, rate);
-            i64 k = rate / 200 - 10;
+            i64 k = ((i64) rate) / 200;
             if (k >= 10) players[id].dan = std::to_string(k - 9) + " Dan";
             else players[id].dan = std::to_string(10 - k) + " Kyu";
         }

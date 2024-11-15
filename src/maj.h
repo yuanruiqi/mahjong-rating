@@ -6,7 +6,13 @@
 
 #define MAJ_H
 
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cassert>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <vector>
 
 using i32 = int;
 using i64 = long long;
