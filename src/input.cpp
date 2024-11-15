@@ -22,6 +22,7 @@ void read_events(){
     i32 n;
     while(cin>>n){
         event crc;
+        cin>>crc.type;
         i32 ida,idb,idc,idd;
         cin>>ida>>idb>>idc>>idd;
         crc.per[0]=ida;
@@ -31,12 +32,12 @@ void read_events(){
         for(i32 i=1;i<=n;i++){
             game p {};
             cin>>p.host;
-            for(i32 j=0;j<=3;j++){
+            for(i32 j=0;j<crc.type;j++){
                 i32 id;
                 cin>>id;
                 p.stat[j]=(state)id;
             }
-            for(i32 j=0;j<=3;j++){
+            for(i32 j=0;j<crc.type;j++){
                 cin>>p.delta[j];
             }
             crc.games.push_back(p);
