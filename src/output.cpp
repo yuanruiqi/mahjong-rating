@@ -1,11 +1,16 @@
 #include "maj.h"
 const std::string indexlink="./html/index.html";
 const std::string outmd="./html/out.md";
+bool cmp(person a,person b){
+    return a.rating>b.rating;
+}
 void output(){
     // std::string opt="<meta charset=\"utf-8\">\n<script src=\"marked.min.js\"></script>";
     // std::string table="<div id=\"$m\" class=\"markdown-body\"></div><textarea id=\"$t\" style=\"display:none\">";
     std::string table="";
-    std::vector<std::string>heads={"姓名","rating","1位率","2位率","3位率","4位率","被飞率","平均顺位","放铳概率","平均打点","参加局数","历史最值rating","段位"};
+    std::vector<std::string>heads={"排名","姓名","rating","1位率","2位率","3位率","4位率","被飞率","平均顺位","放铳概率","平均打点","参加局数","历史最值rating","段位"};
+    auto player_output=players;
+    std::sort(players.begin(),players.end(),cmp);
     for(auto x:heads){
         table+="|"+x;
     }
@@ -14,9 +19,10 @@ void output(){
         table+="|------";
     }
     table+="|\n";
-
+    i32 cnt=1;
     for(auto player:players){
         std::stringstream opt;
+        opt<<"|"<<(cnt++);
         opt<<"|"<<player.name;;
         opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.rating;
         i32 t=0;
@@ -36,4 +42,5 @@ void output(){
     // table+=" </textarea>\n <script>$m.innerHTML = marked.parse($t.value);</script>";
         std::ofstream cout(outmd.c_str(),std::ios_base::out);
         cout<<table;
+        players=player_output;
 }
