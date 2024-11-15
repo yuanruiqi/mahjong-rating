@@ -4,7 +4,7 @@ const std::string outmd="./html/out.md";
 bool cmp(person a,person b){
     return a.show_rating>b.show_rating;
 }
-void output(){
+std::string get_table(){
     // std::string opt="<meta charset=\"utf-8\">\n<script src=\"marked.min.js\"></script>";
     // std::string table="<div id=\"$m\" class=\"markdown-body\"></div><textarea id=\"$t\" style=\"display:none\">";
     std::string table="";
@@ -40,8 +40,14 @@ void output(){
         opt<<"|\n";
         table+=opt.str();
     }
-    // table+=" </textarea>\n <script>$m.innerHTML = marked.parse($t.value);</script>";
-        std::ofstream cout(outmd.c_str(),std::ios_base::out);
-        cout<<table;
         players=player_output;
+    return table;
+    // table+=" </textarea>\n <script>$m.innerHTML = marked.parse($t.value);</script>";
+
+}
+void output(){
+    std::ofstream cout(outmd.c_str(),std::ios_base::out);
+    cout<<get_table()<<'\n';
+    cout<<"[此处可以查看 rating 计算方式](https://github.com/yuanruiqi/mahjong-rating/blob/main/doc/plan.md)";
+    
 }
