@@ -1,12 +1,13 @@
 #include "maj.h"
 const std::string indexlink="./html/index.html";
 void output(){
-    std::string opt="";
+    std::string opt="<meta charset=\"utf-8\">\n";
     for(auto player:players){
         std::string outputpath="./html/";
         outputpath+=player.name+".html";
         std::cerr<<outputpath<<'\n';
         std::ofstream cout(outputpath.c_str(),std::ios_base::out);
+        cout<<"<meta charset=\"utf-8\">\n";
         cout<<"姓名："<<player.name<<'\n';
         i32 t=0;
         for(i32 i=0;i<=4;i++){
