@@ -1,8 +1,10 @@
 #include "maj.h"
 const std::string indexlink="./html/index.html";
+const std::string outmd="./html/out.md";
 void output(){
-    std::string opt="<meta charset=\"utf-8\">\n<script src=\"marked.min.js\"></script>";
-    std::string table="<div id=\"$m\" class=\"markdown-body\"></div><textarea id=\"$t\" style=\"display:none\">";
+    // std::string opt="<meta charset=\"utf-8\">\n<script src=\"marked.min.js\"></script>";
+    // std::string table="<div id=\"$m\" class=\"markdown-body\"></div><textarea id=\"$t\" style=\"display:none\">";
+    std::string table="";
     std::vector<std::string>heads={"姓名","rating","1位率","2位率","3位率","4位率","被飞率","平均顺位","放铳概率","平均打点","参加局数","历史最值rating","段位"};
     for(auto x:heads){
         table+="|"+x;
@@ -31,7 +33,7 @@ void output(){
         opt<<"|\n";
         table+=opt.str();
     }
-    table+=" </textarea>\n <script>$m.innerHTML = marked.parse($t.value);</script>";
-        std::ofstream cout(indexlink.c_str(),std::ios_base::out);
-        cout<<opt<<table;
+    // table+=" </textarea>\n <script>$m.innerHTML = marked.parse($t.value);</script>";
+        std::ofstream cout(outmd.c_str(),std::ios_base::out);
+        cout<<table;
 }
