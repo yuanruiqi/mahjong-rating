@@ -59,9 +59,11 @@ void analysis()
             ++players[id].rank_cnt[rk[i]];
             players[id].rank_cnt[4] += score[i] < 0;
             f128 delta = (score[i] - 25000) / (100 * pi) + calc(rk[i], avg, players[id].rating);
-            players[id].rating += delta;
+            f128 rate = (players[id].rating += delta);
+            players[id].max_rating = std::max(players[id].max_rating, rate);
+            i64 k = rate / 200 - 10;
+            if (k >= 10) players[id].dan = std::to_string(k - 9) + " Dan";
+            else players[id].dan = std::to_string(10 - k) + " Kyu";
         }
     }
-    // TEST
-    for (auto i : players) std::cerr << i.name << ' ' << i.rating << '\n';
 }

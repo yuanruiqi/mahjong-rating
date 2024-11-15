@@ -16,12 +16,12 @@ using f128 = long double;
 
 struct person
 {
-    std::string name;
+    std::string name, dan;
     i64 rank_cnt[5];
     i64 event_cnt, game_cnt, event_sum;
     i64 win_cnt, win_sum, crush_cnt;
-    f128 rating;
-    person() {rating = 2000; }
+    f128 rating, max_rating;
+    person() {rating = max_rating = 2000; }
 };
 extern std::vector<person> players;
 
