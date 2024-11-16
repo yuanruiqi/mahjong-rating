@@ -10,8 +10,9 @@ f128 poly(f128 r)
 {
     return r / (10 * phi);
 }
-f128 calc(i32 rk, f128 avg, f128 rate)
+f128 calc(i32 rk, i32 typ, f128 avg, f128 rate)
 {
+    if (typ && rk == 3) rk = 4;
     if (!rk) return poly(avg);
     if (rk == 3) return -poly(rate);
     return poly(avg) * (rk == 1 ? 1 : -1) / e;
@@ -19,21 +20,22 @@ f128 calc(i32 rk, f128 avg, f128 rate)
 
 constexpr f128 rate_delta[] = {-2000, -1000, -500, -250, 0};
 
-void analysis()
+void analysis(std::vector<event>& db, std::vector<person>& players, const i32 typ)
 {
     for (event ev : db)
     {
-        for (i32 i = 0; i < 4; ++i)
+        for (i32 i = 0; i < typ; ++i)
         {
             i32 id = ev.per[i];
             ++players[id].event_cnt;
             players[id].game_cnt += ev.games.size();
         }
-        i64 score[4];
-        std::fill(score, score + 4, 25000);
+        i64 score[typ];
+        i64 ori = typ == 3 ? 35000 : 25000;
+        std::fill(score, score + typ, ori);
         for (game g : ev.games)
         {
-            for (i32 i = 0; i < 4; ++i)
+            for (i32 i = 0; i < typ; ++i)
             {
                 i32 id = ev.per[i];
                 score[i] += g.delta[i];
@@ -45,22 +47,21 @@ void analysis()
                 players[id].crush_cnt += g.stat[i] == CRUSH;
             }
         }
-        assert(score[0] + score[1] + score[2] + score[3] == 100000);
-        pii p[4];
-        i32 rk[4];
-        for (i32 i = 0; i < 4; ++i) p[i] = pii(-score[i], i);
-        std::sort(p, p + 4);
-        for (i32 i = 0; i < 4; ++i) rk[p[i].second] = i;
+        pii p[typ];
+        i32 rk[typ];
+        for (i32 i = 0; i < typ; ++i) p[i] = pii(-score[i], i);
+        std::sort(p, p + typ);
+        for (i32 i = 0; i < typ; ++i) rk[p[i].second] = i;
         f128 avg = 0;
-        for (i32 i = 0; i < 4; ++i) avg += players[ev.per[i]].rating;
-        avg /= 4;
-        for (i32 i = 0; i < 4; ++i)
+        for (i32 i = 0; i < typ; ++i) avg += players[ev.per[i]].rating;
+        avg /= typ;
+        for (i32 i = 0; i < typ; ++i)
         {
             i32 id = ev.per[i];
             players[id].event_sum += score[i];
             ++players[id].rank_cnt[rk[i]];
             players[id].rank_cnt[4] += score[i] < 0;
-            f128 delta = (score[i] - 25000) / (100 * pi) + calc(rk[i], avg, players[id].rating);
+            f128 delta = (score[i] - ori) / (100 * pi) + calc(rk[i], typ, avg, players[id].rating);
             players[id].rating += delta;
             f128 rate = players[id].show_rating = players[id].rating + rate_delta[std::min(4ll, players[id].event_cnt)];
             players[id].max_rating = std::max(players[id].max_rating, rate);
@@ -68,10 +69,16 @@ void analysis()
             if (k >= 10) players[id].dan = std::to_string(k - 9) + " Dan";
             else players[id].dan = std::to_string(10 - k) + " Kyu";
         }
-        for(i32 i=0;i<4;i++){
-            i32 id=ev.per[i];
-            std::cerr<<players[id].name<<':'<<score[i]<<'\n';
+        for (i32 i = 0; i < typ; ++i)
+        {
+            i32 id = ev.per[i];
+            std::cerr << players[id].name << ':' << score[i] << '\n';
         }
-        std::cerr<<"----\n";
+        for (i32 i = 0; i < typ; ++i)
+        {
+            i32 id = ev.per[i];
+            std::cerr << players[id].name << ':' << players[id].rating << '\n';
+        }
+        std::cerr << "----\n";
     }
 }
