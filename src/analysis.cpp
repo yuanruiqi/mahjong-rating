@@ -68,5 +68,10 @@ void analysis()
             if (k >= 10) players[id].dan = std::to_string(k - 9) + " Dan";
             else players[id].dan = std::to_string(10 - k) + " Kyu";
         }
+        for(i32 i=0;i<4;i++){
+            i32 id=ev.per[i];
+            std::cerr<<players[id].name<<':'<<score[i]<<'\n';
+        }
+        std::cerr<<"----\n";
     }
 }
