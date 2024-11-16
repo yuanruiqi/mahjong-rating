@@ -57,7 +57,7 @@ struct event
 
 void output();
 
-void analysis(std::vector<event>, std::vector<person>, i32);
+void analysis(std::vector<event>&, std::vector<person>&, const i32);
 
 void input();
 
