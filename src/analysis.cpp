@@ -12,7 +12,8 @@ f128 poly(f128 r)
 }
 f128 calc(i32 rk, i32 typ, f128 avg, f128 rate)
 {
-    if (typ && rk == 3) rk = 4;
+    if (typ == 3 && rk == 1) return 0;
+    if (typ == 3 && rk == 2) rk = 3;
     if (!rk) return poly(avg);
     if (rk == 3) return -poly(rate);
     return poly(avg) * (rk == 1 ? 1 : -1) / e;
