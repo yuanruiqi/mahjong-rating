@@ -13,6 +13,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <map>
 
 using i32 = int;
 using i64 = long long;
@@ -39,6 +40,8 @@ enum state
     TENPAI,     // 4
     NOTEN       // 5
 };
+
+const i32 MAX_STATE = 5;
 
 struct game
 {
