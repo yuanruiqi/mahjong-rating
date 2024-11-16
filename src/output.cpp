@@ -9,7 +9,7 @@ namespace qua{
         // std::string opt="<meta charset=\"utf-8\">\n<script src=\"marked.min.js\"></script>";
         // std::string table="<div id=\"$m\" class=\"markdown-body\"></div><textarea id=\"$t\" style=\"display:none\">";
         std::string table="";
-        std::vector<std::string>heads={"排名","姓名","rating","1位率","2位率","3位率","4位率","被飞率","平均顺位","放铳率","和牌率","平均打点","参加局数","历史最值rating","段位"};
+        std::vector<std::string>heads={"排名","姓名","rating","1位率","2位率","3位率","4位率","被飞率","平均顺位","放铳率","和牌率","平均打点","参加局数","平均终局点数","历史最值rating","段位"};
         auto player_output=players;
         std::sort(players.begin(),players.end(),cmp);
         for(auto x:heads){
@@ -36,6 +36,7 @@ namespace qua{
             opt<<"|"<<std::fixed<<' '<<std::setprecision(1)<<player.win_cnt*100.0/std::max(1ll,player.game_cnt)<<'%';
             opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.win_sum*1.0/std::max(1ll,player.win_cnt);
             opt<<"|"<<player.event_cnt;
+            opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.event_sum*1.0/std::max(1ll,player.event_cnt);;
             opt<<"|"<<player.max_rating;
             opt<<"|"<<player.dan;
             opt<<"|\n";
@@ -53,7 +54,7 @@ namespace tri{
         // std::string opt="<meta charset=\"utf-8\">\n<script src=\"marked.min.js\"></script>";
         // std::string table="<div id=\"$m\" class=\"markdown-body\"></div><textarea id=\"$t\" style=\"display:none\">";
         std::string table="";
-        std::vector<std::string>heads={"排名","姓名","rating","1位率","2位率","3位率","被飞率","平均顺位","放铳率","和牌率","平均打点","参加局数","历史最值rating","段位"};
+        std::vector<std::string>heads={"排名","姓名","rating","1位率","2位率","3位率","被飞率","平均顺位","放铳率","和牌率","平均打点","参加局数","平均终局点数","历史最值rating","段位"};
         auto player_output=players;
         std::sort(players.begin(),players.end(),cmp);
         for(auto x:heads){
@@ -81,6 +82,7 @@ namespace tri{
             opt<<"|"<<std::fixed<<' '<<std::setprecision(1)<<player.win_cnt*100.0/std::max(1ll,player.game_cnt)<<'%';
             opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.win_sum*1.0/std::max(1ll,player.win_cnt);
             opt<<"|"<<player.event_cnt;
+            opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.event_sum*1.0/std::max(1ll,player.event_cnt);;
             opt<<"|"<<player.max_rating;
             opt<<"|"<<player.dan;
             opt<<"|\n";
