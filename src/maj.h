@@ -52,6 +52,7 @@ struct game
 struct event
 {
     i32 per[4];
+    i32 type;//3 or 4
     std::vector<game> games;
 };
 
