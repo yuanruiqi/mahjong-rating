@@ -1,4 +1,12 @@
 #include "maj.h"
 
-std::vector<person> players;
-std::vector<event> db;
+namespace tri
+{
+    std::vector<person> players;
+    std::vector<event> db;
+}
+namespace qua
+{
+    std::vector<person> players;
+    std::vector<event> db;
+}
