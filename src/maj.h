@@ -22,14 +22,13 @@ using f128 = long double;
 
 struct person
 {
+    std::string name, dan;
     i64 rank_cnt[5];
     i64 event_cnt, game_cnt, event_sum;
     i64 win_cnt, win_sum, crush_cnt;
     f128 show_rating, rating, max_rating;
     person() {show_rating = max_rating = 0; rating = 2000;}
 };
-
-extern std::vector<std::string> name, dan;
 
 enum state
 {
