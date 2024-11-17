@@ -10,6 +10,7 @@ using std::vector;
 using std::stringstream;
 #undef int
 const std::string users_file="./data/username.txt";
+const std::string events_file="./data/events.txt";
 signed main(){
     ifstream user;
     user.open(users_file);
@@ -57,4 +58,13 @@ signed main(){
         opt<<'\n';
     }
     cout<<"Put the following text after \"---\" into events.txt:\n------------\n"<<opt.str();
+    cout<<"Do you want to add it to events.txt?(y/n)";
+    char c;
+    cin>>c;
+    if(c=='y'){
+        std::ofstream eventsfile;
+        eventsfile.open(events_file,std::ios::app);
+        eventsfile<<opt.str();
+
+    }
 }
