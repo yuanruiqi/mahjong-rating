@@ -22,7 +22,7 @@ $$
 ### events.txt 格式
 若干行，每组表示一局。
 每个第一行表示局数 $n$ 和类型 $type$，$type = 3 ~ or ~ 4$。
-接下来 $4$ 个数表示参加编号 $id$。
+接下来 $type$ 个数表示参加编号 $id$。
 接下来 $n$ 行，每行 $2\times type +1$ 个整数，按照 struct game 的格式输入。
 
 ### username.txt 格式
