@@ -116,6 +116,7 @@ namespace qua{
             opt+='\n';
             opt+=rating_delt.str();
             opt+='\n';
+            opt+='\n';
         }
         return opt;
     }
