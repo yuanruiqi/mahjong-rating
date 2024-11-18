@@ -1,9 +1,14 @@
 #include "maj.h"
+
 const std::string indexlink="./html/index.html";
 const std::string outmd="./html/out.md";
+
 bool cmp(person a,person b){
     return a.show_rating>b.show_rating;
 }
+
+const std::string poses[]={"东","南","西","北"};
+
 namespace qua{
     std::string get_table(){
         // std::string opt="<meta charset=\"utf-8\">\n<script src=\"marked.min.js\"></script>";
@@ -48,7 +53,58 @@ namespace qua{
 
 
     }
+
+    std::string games_information(){
+        // return "";
+        std::string opt="";
+        std::cerr<<-1<<std::endl;
+        for(auto ev:db){
+            std::string player_names="## ";
+            for(i32 id=0;id<player_cnt;id++){
+                player_names+=players[ev.per[id]].name;
+                player_names+=' ';
+            }
+            std::vector<std::string>games_infor;
+            i32 counter=0;
+            i32 la=0;
+            i32 pp=0;
+            for(auto ga:ev.games){
+                std::stringstream zz;
+                if(ga.host==0&&ga.host!=la){
+                    pp++;
+                }
+                la=ga.host;
+                zz<<"### "<<poses[pp]<<ga.host+1<<' '<<counter<<"本场\n";
+                for(i32 i=0;i<player_cnt;i++){
+                    zz<<players[ev.per[i]].name<<' '<<stid2string[ga.stat[i]]<<'\n';
+                }
+                for(i32 i=0;i<player_cnt;i++){
+                    zz<<players[ev.per[i]].name<<' ';
+                    if(ga.delta[i]>0)zz<<'+';
+                    zz<<ga.delta[i]<<'\n';
+                }
+                auto host=ga.host;
+                if(ga.stat[host]==RON||ga.stat[host]==TSUMO||ga.stat[host]==TENPAI||ga.stat[host]==NOTEN)counter++;
+                else counter=0;
+                games_infor.push_back(zz.str());
+            }
+            std::stringstream final_score;
+            for(i32 id=0;id<player_cnt;id++){
+                final_score<<players[ev.per[id]].name<<' '<<ev.final_score[id]<<'\n';
+            }
+
+            opt+=player_names+'\n';
+            for(auto z:games_infor){
+                opt+=z;
+            }
+            opt+='\n';
+            opt+=final_score.str();
+            opt+='\n';
+        }
+        return opt;
+    }
 }
+
 namespace tri{
     std::string get_table(){
         // std::string opt="<meta charset=\"utf-8\">\n<script src=\"marked.min.js\"></script>";
@@ -91,14 +147,63 @@ namespace tri{
             players=player_output;
         return table;
         // table+=" </textarea>\n <script>$m.innerHTML = marked.parse($t.value);</script>";
-
-
     }
 
+    std::string games_information(){
+        // return "";
+        std::string opt="";
+        std::cerr<<-1<<std::endl;
+        for(auto ev:db){
+            std::string player_names="## ";
+            for(i32 id=0;id<player_cnt;id++){
+                player_names+=players[ev.per[id]].name;
+                player_names+=' ';
+            }
+            std::vector<std::string>games_infor;
+            i32 counter=0;
+            i32 la=0;
+            i32 pp=0;
+            for(auto ga:ev.games){
+                std::stringstream zz;
+                if(ga.host==0&&ga.host!=la){
+                    pp++;
+                }
+                la=ga.host;
+                zz<<"### "<<poses[pp]<<ga.host+1<<' '<<counter<<"本场\n";
+                for(i32 i=0;i<player_cnt;i++){
+                    zz<<players[ev.per[i]].name<<' '<<stid2string[ga.stat[i]]<<'\n';
+                }
+                for(i32 i=0;i<player_cnt;i++){
+                    zz<<players[ev.per[i]].name<<' ';
+                    if(ga.delta[i]>0)zz<<'+';
+                    zz<<ga.delta[i]<<'\n';
+                }
+                auto host=ga.host;
+                if(ga.stat[host]==RON||ga.stat[host]==TSUMO||ga.stat[host]==TENPAI||ga.stat[host]==NOTEN)counter++;
+                else counter=0;
+                games_infor.push_back(zz.str());
+            }
+            std::stringstream final_score;
+            for(i32 id=0;id<player_cnt;id++){
+                final_score<<players[ev.per[id]].name<<' '<<ev.final_score[id]<<'\n';
+            }
+
+            opt+=player_names+'\n';
+            for(auto z:games_infor){
+                opt+=z;
+            }
+            opt+='\n';
+            opt+=final_score.str();
+            opt+='\n';
+        }
+        return opt;
+    }
 }
+
 std::string how_rating_counts(){
     return "[此处可以查看 rating 计算方式](https://github.com/yuanruiqi/mahjong-rating/blob/main/doc/plan.md)";
 }
+
 std::string score_table(){
     std::string opt=R"(|    :     |           １番           |           |           ２番           |           |               ３番           |               |          ４番                |               |
 | :------: | :----------------------: | :-----------: | :----------------------: | :-----------: | ------------------------ | ------------- | ------------------------ | ------------- |
@@ -118,10 +223,15 @@ std::string score_table(){
 }
 
 void output(){
+    std::cerr<<-1<<std::endl;
     std::ofstream cout(outmd.c_str(),std::ios_base::out);
     cout<<qua::get_table()<<'\n';
     cout<<tri::get_table()<<'\n';
     cout<<how_rating_counts()<<'\n';;
     cout<<'\n';
     cout<<score_table()<<'\n';
+    cout<<"# 4 麻\n";
+    cout<<qua::games_information()<<'\n';
+    cout<<"# 3 麻\n";
+    cout<<tri::games_information()<<'\n';
 }

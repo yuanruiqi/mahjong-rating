@@ -23,7 +23,7 @@ constexpr f128 rate_delta[] = {-2000, -1000, -500, -250, 0};
 
 void analysis(std::vector<event>& db, std::vector<person>& players, const i32 typ)
 {
-    for (event ev : db)
+    for (event& ev : db)
     {
         for (i32 i = 0; i < typ; ++i)
         {
@@ -31,7 +31,7 @@ void analysis(std::vector<event>& db, std::vector<person>& players, const i32 ty
             ++players[id].event_cnt;
             players[id].game_cnt += ev.games.size();
         }
-        i64 score[typ];
+        i64 *score = ev.final_score;
         i64 ori = typ == 3 ? 35000 : 25000;
         std::fill(score, score + typ, ori);
         for (game g : ev.games)
@@ -64,6 +64,7 @@ void analysis(std::vector<event>& db, std::vector<person>& players, const i32 ty
             players[id].rank_cnt[4] += score[i] < 0;
             f128 delta = (score[i] - ori) / (100 * pi) + calc(rk[i], typ, avg, players[id].rating);
             players[id].rating += delta;
+            ev.rating_deltas[i] = delta;
             f128 rate = players[id].show_rating = players[id].rating + rate_delta[std::min(4ll, players[id].event_cnt)];
             players[id].max_rating = std::max(players[id].max_rating, rate);
             i64 k = ((i64) rate) / 200;
