@@ -77,13 +77,15 @@ namespace qua{
                 la=ga.host;
                 zz<<"### "<<poses[pp]<<ga.host+1<<' '<<counter<<"本场\n";
                 for(i32 i=0;i<player_cnt;i++){
-                    zz<<players[ev.per[i]].name<<' '<<stid2string[ga.stat[i]]<<' ';
+                    if(ga.stat[i]!=SKIPPED)zz<<players[ev.per[i]].name<<' '<<stid2string[ga.stat[i]]<<' ';
                 }
                 zz<<"\n\n";
                 for(i32 i=0;i<player_cnt;i++){
-                    zz<<players[ev.per[i]].name<<' ';
-                    if(ga.delta[i]>0)zz<<'+';
-                    zz<<ga.delta[i]<<' ';
+                    if(ga.delta[i]){
+                        zz<<players[ev.per[i]].name<<' ';
+                        if(ga.delta[i]>0)zz<<'+';
+                        zz<<ga.delta[i]<<' ';
+                    }
                 }
                 zz<<"\n\n";
                 auto host=ga.host;
@@ -174,13 +176,15 @@ namespace tri{
                 la=ga.host;
                 zz<<"### "<<poses[pp]<<ga.host+1<<' '<<counter<<"本场\n";
                 for(i32 i=0;i<player_cnt;i++){
-                    zz<<players[ev.per[i]].name<<' '<<stid2string[ga.stat[i]]<<' ';
+                    if(ga.stat[i]!=SKIPPED)zz<<players[ev.per[i]].name<<' '<<stid2string[ga.stat[i]]<<' ';
                 }
                 zz<<"\n\n";
                 for(i32 i=0;i<player_cnt;i++){
-                    zz<<players[ev.per[i]].name<<' ';
-                    if(ga.delta[i]>0)zz<<'+';
-                    zz<<ga.delta[i]<<' ';
+                    if(ga.delta[i]){  
+                        zz<<players[ev.per[i]].name<<' ';
+                        if(ga.delta[i]>0)zz<<'+';
+                        zz<<ga.delta[i]<<' ';
+                    }
                 }
                 zz<<"\n\n";
                 auto host=ga.host;
