@@ -98,12 +98,23 @@ namespace qua{
                 final_score<<players[ev.per[id]].name<<' '<<ev.final_score[id]<<'\n';
             }
 
+            
+            std::stringstream rating_delt;
+            for(i32 id=0;id<player_cnt;id++){
+                    rating_delt<<players[ev.per[id]].name<<' ';
+                    if(ev.rating_deltas[id]>0)rating_delt<<'+';
+                    rating_delt<<ev.rating_deltas[id]<<' ';
+
+            }
+
             opt+=player_names+'\n';
             for(auto z:games_infor){
                 opt+=z;
             }
             opt+='\n';
             opt+=final_score.str();
+            opt+='\n';
+            opt+=rating_delt.str();
             opt+='\n';
         }
         return opt;
@@ -197,12 +208,22 @@ namespace tri{
                 final_score<<players[ev.per[id]].name<<' '<<ev.final_score[id]<<'\n';
             }
 
+            std::stringstream rating_delt;
+            for(i32 id=0;id<player_cnt;id++){
+                    rating_delt<<players[ev.per[id]].name<<' ';
+                    if(ev.rating_deltas[id]>0)rating_delt<<'+';
+                    rating_delt<<ev.rating_deltas[id]<<' ';
+
+            }
+
             opt+=player_names+'\n';
             for(auto z:games_infor){
                 opt+=z;
             }
             opt+='\n';
             opt+=final_score.str();
+            opt+='\n';
+            opt+=rating_delt.str();
             opt+='\n';
         }
         return opt;
