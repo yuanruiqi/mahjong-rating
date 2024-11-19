@@ -3,7 +3,7 @@
 using pii = std::pair<i64, i64>;
 
 constexpr f128 e = 2.718281828459045;
-constexpr f128 pi = 2.718281828459045;
+constexpr f128 pi = 3.141592653589793;
 constexpr f128 phi = 1.618033988749895;
 
 f128 poly(f128 r)
