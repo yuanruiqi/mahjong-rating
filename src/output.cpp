@@ -58,7 +58,9 @@ namespace qua{
     std::string games_information(){
         // return "";
         std::string opt="";
-        std::cerr<<-1<<std::endl;
+        #ifdef DEBUG
+        std::cerr<<"qua outputing"<<std::endl;
+        #endif
         for(auto pev=db.rbegin();pev!=db.rend();pev++){
             const auto ev=*pev;
             std::string player_names="## ";
@@ -170,7 +172,9 @@ namespace tri{
     std::string games_information(){
         // return "";
         std::string opt="";
-        std::cerr<<-1<<std::endl;
+        #ifdef DEBUG
+        std::cerr<<"tri outputing"<<std::endl;
+        #endif
         for(auto pev=db.rbegin();pev!=db.rend();pev++){
             const auto ev=*pev;
             std::string player_names="## ";

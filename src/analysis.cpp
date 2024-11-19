@@ -71,6 +71,8 @@ void analysis(std::vector<event>& db, std::vector<person>& players, const i32 ty
             if (k >= 10) players[id].dan = std::to_string(k - 9) + " Dan";
             else players[id].dan = std::to_string(10 - k) + " Kyu";
         }
+        
+        #ifdef DEBUG
         for (i32 i = 0; i < typ; ++i)
         {
             i32 id = ev.per[i];
@@ -81,6 +83,7 @@ void analysis(std::vector<event>& db, std::vector<person>& players, const i32 ty
             i32 id = ev.per[i];
             std::cerr << players[id].name << ':' << players[id].rating << '\n';
         }
-        std::cerr << "----\n";
+        std::cerr << "----\n"; 
+        #endif
     }
 }
