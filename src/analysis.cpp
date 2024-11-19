@@ -47,6 +47,9 @@ void analysis(std::vector<event>& db, std::vector<person>& players, const i32 ty
                     players[id].win_sum += g.delta[i];
                 }
                 players[id].crush_cnt += g.stat[i] == CRUSH;
+                if(g.stat[i] == CRUSH){
+                    players[id].crush_sum += g.delta[i];
+                }
             }
         }
         pii p[typ];
