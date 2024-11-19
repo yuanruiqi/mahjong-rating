@@ -59,7 +59,8 @@ namespace qua{
         // return "";
         std::string opt="";
         std::cerr<<-1<<std::endl;
-        for(auto ev:db){
+        for(auto pev=db.rbegin();pev!=db.rend();pev++){
+            const auto ev=*pev;
             std::string player_names="## ";
             for(i32 id=0;id<player_cnt;id++){
                 player_names+=players[ev.per[id]].name;
@@ -170,7 +171,8 @@ namespace tri{
         // return "";
         std::string opt="";
         std::cerr<<-1<<std::endl;
-        for(auto ev:db){
+        for(auto pev=db.rbegin();pev!=db.rend();pev++){
+            const auto ev=*pev;
             std::string player_names="## ";
             for(i32 id=0;id<player_cnt;id++){
                 player_names+=players[ev.per[id]].name;
