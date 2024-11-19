@@ -18,6 +18,7 @@ $$
 \Delta R=\frac{x-25000}{100\pi}+(poly(\overline{R})/\frac{poly(\overline{R})}{e}/-\frac{poly(\overline{R})}{e}/-poly(R))
 $$
 
+这里认为 $e=2.718281828459045$，$\pi=3.141592653589793$，$\phi =1.618033988749895$。 
 
 ### events.txt 格式
 若干行，每组表示一局。
