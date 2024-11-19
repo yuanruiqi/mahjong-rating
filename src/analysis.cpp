@@ -10,6 +10,7 @@ f128 poly(f128 r)
 {
     return r / (10 * phi);
 }
+
 f128 calc(i32 rk, i32 typ, f128 avg, f128 rate)
 {
     if (typ == 3 && rk == 1) return 0;
@@ -83,7 +84,7 @@ void analysis(std::vector<event>& db, std::vector<person>& players, const i32 ty
             i32 id = ev.per[i];
             std::cerr << players[id].name << ':' << players[id].rating << '\n';
         }
-        std::cerr << "----\n"; 
+        std::cerr << "----\n";
         #endif
     }
 }
