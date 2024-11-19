@@ -67,7 +67,7 @@ void analysis(std::vector<event>& db, std::vector<person>& players, const i32 ty
             ev.rating_deltas[i] = delta;
             f128 rate = players[id].show_rating = players[id].rating + rate_delta[std::min(4ll, players[id].event_cnt)];
             players[id].max_rating = std::max(players[id].max_rating, rate);
-            i64 k = ((i64) rate) / 200;
+            i64 k = ((i64) players[id].max_rating) / 200;
             if (k >= 10) players[id].dan = std::to_string(k - 9) + " Dan";
             else players[id].dan = std::to_string(10 - k) + " Kyu";
         }
