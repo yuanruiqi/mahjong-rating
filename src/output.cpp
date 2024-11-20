@@ -41,7 +41,7 @@ namespace qua{
             opt<<"|"<<std::fixed<<' '<<std::setprecision(1)<<player.win_cnt*100.0/std::max(1ll,player.game_cnt)<<'%';//和牌率
             opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.win_sum*1.0/std::max(1ll,player.win_cnt);//平均打点
             opt<<"|"<<player.event_cnt;//参加局数
-            opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.crush_sum*1.0/std::max(1ll,player.crush_cnt);//平均铳点
+            opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<-player.crush_sum*1.0/std::max(1ll,player.crush_cnt);//平均铳点
             opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.event_sum*1.0/std::max(1ll,player.event_cnt);;//平均终局点数
             opt<<"|"<<player.max_rating;//历史最值rating
             opt<<"|"<<player.dan;//段位
@@ -159,7 +159,7 @@ namespace tri{
             opt<<"|"<<std::fixed<<' '<<std::setprecision(1)<<player.win_cnt*100.0/std::max(1ll,player.game_cnt)<<'%';//和牌率
             opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.win_sum*1.0/std::max(1ll,player.win_cnt);//平均打点
             opt<<"|"<<player.event_cnt;//参加局数
-            opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.crush_sum*1.0/std::max(1ll,player.crush_cnt);//平均铳点
+            opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<-player.crush_sum*1.0/std::max(1ll,player.crush_cnt);//平均铳点
             opt<<"|"<<std::fixed<<' '<<std::setprecision(3)<<player.event_sum*1.0/std::max(1ll,player.event_cnt);;//平均终局点数
             opt<<"|"<<player.max_rating;//历史最值rating
             opt<<"|"<<player.dan;//段位
