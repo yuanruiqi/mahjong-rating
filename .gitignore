@@ -1,3 +1,5 @@
-./.vscode/
-./main
-./html/
+.vscode/
+html/
+addevent
+main
+data/
