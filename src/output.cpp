@@ -93,7 +93,11 @@ namespace qua{
                 }
                 zz<<"\n\n";
                 auto host=ga.host;
-                if(ga.stat[host]==RON||ga.stat[host]==TSUMO||ga.stat[host]==TENPAI||ga.stat[host]==NOTEN)counter++;
+                bool all_skip=true;
+                for(i32 i=0;i<player_cnt;i++){
+                    if(ga.stat[i]!=SKIPPED)all_skip=0;
+                }
+                if(ga.stat[host]==RON||ga.stat[host]==TSUMO||ga.stat[host]==TENPAI||ga.stat[host]==NOTEN||all_skip)counter++;
                 else counter=0;
                 games_infor.push_back(zz.str());
             }
@@ -208,7 +212,11 @@ namespace tri{
                 }
                 zz<<"\n\n";
                 auto host=ga.host;
-                if(ga.stat[host]==RON||ga.stat[host]==TSUMO||ga.stat[host]==TENPAI||ga.stat[host]==NOTEN)counter++;
+                bool all_skip=true;
+                for(i32 i=0;i<player_cnt;i++){
+                    if(ga.stat[i]!=SKIPPED)all_skip=0;
+                }
+                if(ga.stat[host]==RON||ga.stat[host]==TSUMO||ga.stat[host]==TENPAI||ga.stat[host]==NOTEN||all_skip)counter++;
                 else counter=0;
                 games_infor.push_back(zz.str());
             }
