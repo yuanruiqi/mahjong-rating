@@ -28,7 +28,7 @@ $$
 - 顺位马：$+15 +5 -5 -15$
 - 点数：$f_i=\frac{s_i-\bar{s}}{1000}$
 - 基本rating delta $rd_i=f_i$+顺位马 -（4(末)位扣分）
-- 期望顺位 $p_i=\sum \frac 1 {1+2^{(r_i-r_j)/300}}+1$
+- 期望顺位 $p_i=\sum \frac 1 {1+2^{(r_i-r_j)/200}}+1$
 - 顺位差 $g_i$= 期望顺位-实际顺位 $\in [-3,3]$
 -  若 $rd_i>0$，rating delta  =  $rd_i \times {(\frac 4 3)^{g_i}}$+（1位头名赏）
 - 若 $rd_i<0$，rating delta  =  $rd_i \times {(\frac 3 4)^{g_i}}$+（1位头名赏）
