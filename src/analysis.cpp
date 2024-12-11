@@ -24,20 +24,20 @@ const i32 ori[]={0,0,0,35000,25000};
 
 f128 calc(i32 typ, i32 pos, i32 rank, std::vector<i32>scores, std::vector<f128>prating){
     const f128 S=rank==0?15:0;
-    const f128 D=rank==typ-1?std::max<f128>(5ll,(prating[pos]-1400.0)/60.0):0.0;
+    const f128 D=rank==typ-1?std::max<f128>(0ll,(prating[pos]-1500.0)/60.0):0.0;
     std::vector<f128>diff;
-    if(typ==3)diff={+20,0,-20};
+    if(typ==3)diff={+15,0,-15};
     else diff={+15,+5,-5,-15};
-    f128 delta_base=diff[rank]+(scores[pos]-ori[typ])/800.0-D;
+    f128 delta_base=diff[rank]+(scores[pos]-ori[typ])/1000.0-D;
     f128 E_rank=1;
     for(i32 i=0;i<typ;i++){
         if(i!=pos){
-            E_rank+=1./(1.0+std::pow(2,(prating[pos]-prating[i])/300.0));
+            E_rank+=1./(1.0+std::pow(2,(prating[pos]-prating[i])/200.0));
         }
     }
     f128 g=E_rank-rank;
-    if(delta_base>0)delta_base*=pow(5.0/4.0,g);
-    else delta_base*=pow(4.0/5.0,g);
+    if(delta_base>0)delta_base*=pow(4.0/3.0,g);
+    else delta_base*=pow(3.0/4.0,g);
     return delta_base+S;
 }
 
