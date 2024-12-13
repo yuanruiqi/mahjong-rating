@@ -36,8 +36,8 @@ f128 calc(i32 typ, i32 pos, i32 rank, std::vector<i32>scores, std::vector<f128>p
         }
     }
     f128 g=E_rank-rank;
-    if(delta_base>0)delta_base*=pow(5.0/4.0,g);
-    else delta_base*=pow(4.0/5.0,g);
+    if(delta_base>0)delta_base*=1+(0.5*g/3);
+    else delta_base*=1-(0.5*g/3);
     return delta_base+S;
 }
 
