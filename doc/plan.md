@@ -32,6 +32,7 @@ $$
 - 顺位差 $g_i$= 期望顺位-实际顺位 $\in [-3,3]$
 -  若 $rd_i>0$，rating delta  =  $rd_i \times {1+\frac 5 3 g_i}$+（1位头名赏）
 - 若 $rd_i<0$，rating delta  =  $rd_i \times {1-\frac 5 3 g_i}$+（1位头名赏）
+- 考虑到一些实际情况，最终变化量会 *1.5
 
 
 
