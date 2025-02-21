@@ -21,24 +21,28 @@ f128 poly(f128 r)
 // }
 
 const i32 ori[]={0,0,0,35000,25000};
-
+const i32 Earvrating=2100;
 f128 calc(i32 typ, i32 pos, i32 rank, std::vector<i32>scores, std::vector<f128>prating){
-    const f128 S=rank==0?15:0;
-    const f128 D=rank==typ-1?std::max<f128>(5ll,(prating[pos]-1400.0)/60.0):0.0;
-    std::vector<f128>diff;
-    if(typ==3)diff={+20,0,-20};
-    else diff={+15,+5,-5,-15};
-    f128 delta_base=diff[rank]+(scores[pos]-ori[typ])/800.0-D;
-    f128 E_rank=1;
+    std::vector<i32>deltas=typ==4?
+        std::vector<i32>{+35,+5,-10,-30}:
+        std::vector<i32>{+30,0,-30};
+    
+    f128 arvrating=0;
     for(i32 i=0;i<typ;i++){
-        if(i!=pos){
-            E_rank+=1./(1.0+std::pow(2,(prating[pos]-prating[i])/300.0));
-        }
+        arvrating+=prating[i];
     }
-    f128 g=E_rank-rank;
-    if(delta_base>0)delta_base*=pow(5.0/4.0,g);
-    else delta_base*=pow(4.0/5.0,g);
-    return delta_base+S;
+    arvrating/=typ;
+
+    f128 selfrating=prating[pos];
+    f128 deltascore=scores[pos]-ori[typ];
+    f128 exscore1=0.04 * (arvrating-selfrating);
+    f128 exscore2=0.04 * (Earvrating-arvrating);
+    f128 fine=0;
+    if(rank==typ-1){
+        fine=std::max<f128>(0,(selfrating-1900) * 0.08);
+    }
+    return deltas[rank]+deltascore*0.0005+exscore1+exscore2-fine;
+
 }
 
 constexpr f128 rate_delta[] = {-2000, -1000, -500, -250, 0};
